@@ -2,4 +2,6 @@
 *.jar
 output/
 .vscode/
-
+*.class
+target/
+bin/
