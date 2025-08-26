@@ -3,11 +3,11 @@ package it.polito.bigdata.hadoop;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Text;
+import org.apache.hadoop.io.*;
+import org.apache.hadoop.mapreduce.Counter;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
-import org.apache.hadoop.mapreduce.lib.input.TextInputFormat;
+import org.apache.hadoop.mapreduce.lib.input.KeyValueTextInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Tool;
@@ -19,27 +19,31 @@ import org.apache.hadoop.util.ToolRunner;
  */
 public class DriverBigData extends Configured implements Tool {
 
+	public static enum COUNTERS {
+		SELECTED_WORDS, 
+		DISCARDED_WORDS
+	}
+
   @Override
-  public int run(String[] args) throws Exception {
-    int exitCode = 0;  
-	
+  public int run(String[] args) throws Exception {	
     Path inputPath;
     Path outputDir;
-    int numberOfReducers;
-
+    int exitCode;
+  
 	  // Parse the parameters
-    numberOfReducers = Integer.parseInt(args[0]);
-    inputPath = new Path(args[1]);
-    outputDir = new Path(args[2]);
+
+    inputPath = new Path(args[0]);
+    outputDir = new Path(args[1]);
 	
 	
     Configuration conf = this.getConf();
+    conf.set("prefix", args[2]);
 
     // Define a new job
     Job job = Job.getInstance(conf); 
 
     // Assign a name to the job
-    job.setJobName("Lab - Skeleton");
+    job.setJobName("Exercise 2");
     
     // Set path of the input file/folder (if it is a folder, the job reads all the files in the specified folder) for this job
     FileInputFormat.addInputPath(job, inputPath);
@@ -51,7 +55,7 @@ public class DriverBigData extends Configured implements Tool {
     job.setJarByClass(DriverBigData.class);
     
     // Set job input format
-    job.setInputFormatClass(TextInputFormat.class);
+    job.setInputFormatClass(KeyValueTextInputFormat.class);
 
     // Set job output format
     job.setOutputFormatClass(TextOutputFormat.class);
@@ -61,10 +65,8 @@ public class DriverBigData extends Configured implements Tool {
     
     // Set map output key and value classes
     job.setMapOutputKeyClass(Text.class);
-    job.setMapOutputValueClass(IntWritable.class);
+    job.setMapOutputValueClass(Text.class);
     
-    // Set reduce class
-    job.setReducerClass(ReducerBigData.class);
         
     // Set reduce output key and value classes
     job.setOutputKeyClass(Text.class);
@@ -75,13 +77,18 @@ public class DriverBigData extends Configured implements Tool {
    
     
     // Execute the job and wait for completion
-    if (job.waitForCompletion(true)==true)
+    if (job.waitForCompletion(true)==true) {
     	exitCode=0;
+      Counter selectedWords=job.getrCounter(COUNTERS.SELECTED_WORDS);
+      Counter discardedWords=job.getCounter(COUNTERS.DISCARDED_WORDS);
+
+      System.out.println("SELECTED_WORDS: "+selectedWords.getValue());
+      System.out.println("DISCARDED_WORDS: "+discardedWords.getValue());
+    }
     else
     	exitCode=1;
-
     return exitCode;
-    
+  
   }
   
 
