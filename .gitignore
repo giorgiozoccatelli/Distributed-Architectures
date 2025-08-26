@@ -1,7 +1,9 @@
 .DS_Store
 *.jar
-output/
 .vscode/
 *.class
 target/
 bin/
+.settings/
+*.classpath
+*.project
