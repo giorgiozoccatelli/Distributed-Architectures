@@ -28,7 +28,7 @@ class MapperBigData extends Mapper<
         Text value,         // Input value type
         Context context) throws IOException, InterruptedException {
             
-        if () {
+        if (key.toString().startsWith(prefix)) {
             context.write(key, value);
             context.getCounter(COUNTERS.SELECTED_WORDS).increment(1);
         }
