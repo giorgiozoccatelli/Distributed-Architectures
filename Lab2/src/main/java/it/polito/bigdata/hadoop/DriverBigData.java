@@ -21,18 +21,13 @@ public class DriverBigData extends Configured implements Tool {
 
   @Override
   public int run(String[] args) throws Exception {
-
-
-	int exitCode = 0;  
-
-    /* Change the following part of the code 
+    int exitCode = 0;  
 	
     Path inputPath;
     Path outputDir;
     int numberOfReducers;
 
-	
-	// Parse the parameters
+	  // Parse the parameters
     numberOfReducers = Integer.parseInt(args[0]);
     inputPath = new Path(args[1]);
     outputDir = new Path(args[2]);
@@ -76,7 +71,7 @@ public class DriverBigData extends Configured implements Tool {
     job.setOutputValueClass(IntWritable.class);
 
     // Set number of reducers
-    job.setNumReduceTasks(numberOfReducers);
+    job.setNumReduceTasks(0);
    
     
     // Execute the job and wait for completion
@@ -84,9 +79,7 @@ public class DriverBigData extends Configured implements Tool {
     	exitCode=0;
     else
     	exitCode=1;
-    	
-    */
-    	
+
     return exitCode;
     
   }
