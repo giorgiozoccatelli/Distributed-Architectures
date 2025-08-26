@@ -79,8 +79,8 @@ public class DriverBigData extends Configured implements Tool {
     // Execute the job and wait for completion
     if (job.waitForCompletion(true)==true) {
     	exitCode=0;
-      Counter selectedWords=job.getCounter.findCounter(COUNTERS.SELECTED_WORDS);
-      Counter discardedWords=job.getCounter.findCounter(COUNTERS.DISCARDED_WORDS);
+      Counter selectedWords=job.getCounters().findCounter(COUNTERS.SELECTED_WORDS);
+      Counter discardedWords=job.getCounters().findCounter(COUNTERS.DISCARDED_WORDS);
 
       System.out.println("SELECTED_WORDS: "+selectedWords.getValue());
       System.out.println("DISCARDED_WORDS: "+discardedWords.getValue());
