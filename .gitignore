@@ -9,4 +9,4 @@ bin/
 *.project
 *.crc
 *.xml
-output/
+**output/
