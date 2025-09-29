@@ -1,6 +1,6 @@
 # Distributed Architectures
 
-This repository contains personal exercises and solutions developed for the course **01TUYSM – Distributed Architectures for Big Data Processing and Analytics** at **Politecnico di Torino**, taught by **Prof. Paolo Garza**.
+This repository contains personal exercises and solutions developed for the course *01TUYSM – Distributed Architectures for Big Data Processing and Analytics** at **Politecnico di Torino*, taught by Prof. Paolo Garza.
 
 ## 📚 Course Overview
 The course focuses on distributed computing paradigms and frameworks for big data processing and analytics.  
