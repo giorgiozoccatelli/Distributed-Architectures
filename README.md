@@ -12,7 +12,7 @@ The course also presents approaches for **distributed machine learning algorithm
 The repository is organized according to the laboratory sessions:
 
 - **Labs 1–4:** Exercises using **Hadoop MapReduce**
-- **Labs 5–10:** Exercises using **Apache Spark**
+- **Labs 5–9:** Exercises using **Apache Spark**
 
 ## ⚠️ Disclaimer
 These materials are intended for **personal study purposes only** and are **not official course solutions**.
