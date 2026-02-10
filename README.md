@@ -13,7 +13,7 @@ The repository is organized according to the laboratory sessions:
 
 - **Lab 1–4:** Exercises on **Hadoop MapReduce**
 - **Lab 5–9:** Exercises on **Apache Spark**
-- **Spark Exercises:** List of dditional exercises on **Apache Spark**
+- **Spark Exercises:** List of additional exercises on **Apache Spark**
  
 ## ⚠️ Disclaimer
 These materials are intended for **personal study purposes only** and are **not official course solutions**.
